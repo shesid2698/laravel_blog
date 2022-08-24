@@ -26,8 +26,37 @@
         <div class="row">
 
           <div class="col-lg-8 entries">
+@foreach ($posts as $post )
+       <article class="entry">
 
-            <article class="entry">
+              <div class="entry-img">
+                <img src="{{asset($post->pic)}}" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="{{url('blog/'.$post->id)}}">{{asset($post->title)}}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+               {{asset($post->content_small)}}
+                </p>
+                <div class="read-more">
+                  <a href="{{url('blog/'.$post->id)}}">閱讀更多</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->
+@endforeach
+            {{-- <article class="entry">
 
               <div class="entry-img">
                 <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
@@ -57,35 +86,7 @@
 
             </article><!-- End blog entry -->
 
-            <article class="entry">
 
-              <div class="entry-img">
-                <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
-              </div>
-
-              <h2 class="entry-title">
-                <a href="blog-single.html">Nisi magni odit consequatur autem nulla dolorem</a>
-              </h2>
-
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
-                </ul>
-              </div>
-
-              <div class="entry-content">
-                <p>
-                  Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                  Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut. Sit aliquam et quia molestias laboriosam. Tempora nam odit omnis eum corrupti qui aliquid excepturi molestiae. Facilis et sint quos sed voluptas. Maxime sed tempore enim omnis non alias odio quos distinctio.
-                </p>
-                <div class="read-more">
-                  <a href="blog-single.html">Read More</a>
-                </div>
-              </div>
-
-            </article><!-- End blog entry -->
 
             <article class="entry">
 
@@ -145,7 +146,7 @@
                 </div>
               </div>
 
-            </article><!-- End blog entry -->
+            </article><!-- End blog entry --> --}}
 
             <div class="blog-pagination">
               <ul class="justify-content-center">
@@ -169,15 +170,13 @@
                 </form>
               </div><!-- End sidebar search formn-->
 
-              <h3 class="sidebar-title">Categories</h3>
+              <h3 class="sidebar-title">分類</h3>
               <div class="sidebar-item categories">
                 <ul>
-                  <li><a href="#">General <span>(25)</span></a></li>
-                  <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                  <li><a href="#">Travel <span>(5)</span></a></li>
-                  <li><a href="#">Design <span>(22)</span></a></li>
-                  <li><a href="#">Creative <span>(8)</span></a></li>
-                  <li><a href="#">Educaion <span>(14)</span></a></li>
+                  @foreach ($categories as $category)
+                      <li><a href="{{url('/categories/'.$category->id)}}">{{$category->title }}<span>(??)</span></a></li>
+                  @endforeach
+
                 </ul>
               </div><!-- End sidebar categories-->
 
